@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Board">
+	<!-- 게시판 -->
+	<select id ="BoardList" parameterType = "co.kr.Board.Criteria" resultType="co.kr.Board.BoardDTO">
+		select * from
+		board
+		where b_del = 0
+		and b_code = #{b_code}
+		limit #{start}, #{end}
+	</select>
+	
+	<!-- 게시판 토탈 카운트 -->
+	<select id = "BoardTotalCount" parameterType = "java.lang.String" resultType = "java.lang.Integer">
+		select count(*) from board
+		where b_code = #{b_code}	
+	</select>
+	
+	<!-- 게시판 글 상세-->
+	<select id = "BoardDetail" parameterType="java.lang.Integer" resultType="co.kr.Board.BoardDTO">
+		select * from
+		board 
+		where b_number = #{b_number}
+	</select>
+	
+	<update id = "BoardReadCnt" parameterType = "java.lang.Integer">
+		update board
+		set b_cnt = b_cnt +1
+		where b_number = #{b_number}
+	</update>
+	
+	<insert id = "BoardRegister" parameterType = "co.kr.Board.BoardDTO">
+		insert into 
+		board(b_id, b_title, b_content, b_code)
+		values('admin', #{b_title}, #{b_content}, #{b_code})
+	</insert>
+	
+	<update id = "BoardDelete" parameterType = "java.lang.Integer">
+		update board
+		set b_del = 1
+		where b_number = #{b_number}
+	</update>
+	
+	<update id = "BoardUpdate" parameterType = "co.kr.Board.BoardDTO">
+		update board
+		set b_title = #{b_title}, b_content = #{b_content}
+		where b_number = #{b_number}
+	</update>
+	
+	<!-- 댓글 보기 -->
+	<select id = "ReplyView" parameterType = "java.lang.Integer" resultType="co.kr.Board.Reply">
+		select * from
+		reply 
+		where b_number = #{b_number}
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id = "ReplyInsert" parameterType="co.kr.Board.Reply">
+		insert into 
+		reply(r_id, r_content,b_number)
+		values(#{r_id}, #{r_content}, #{b_number})
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
