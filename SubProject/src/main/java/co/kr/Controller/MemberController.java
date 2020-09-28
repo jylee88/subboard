@@ -20,8 +20,11 @@ public class MemberController {
 		return "Member/SignUp";
 	}
 	
-	@RequestMapping(value = "", method = RequestMethod.POST)
-	public void SignUp(MemberDTO memberDTO) {
+	@RequestMapping(value = "Member/SignUp", method = RequestMethod.POST)
+	public String SignUp(MemberDTO memberDTO) {
+		System.out.println(memberDTO);
 		memberservice.SignUp(memberDTO);
+		
+		return "../";
 	}
 }
