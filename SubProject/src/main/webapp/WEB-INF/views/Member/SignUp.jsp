@@ -7,16 +7,33 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	.signUp{
+		border : 1px solid;
+		margin : 5px;
+	}
+</style>
 </head>
 <body>
+	<form method="POST">
 	<div align = "center">
-		<h1>이재용 멍청이</h1>
-		<h2>이재용 멍청이2</h2>
-		<h3>이재용 멍청이3</h3>
-		<h4>이재용 나이많아</h4>
-		<h5>이재용 나이 너무 많아</h5>
-		<h6>이재용 나이 지금 이 글보다 많아</h6>
-		<h7>이재용 뭘봐</h7>
+		<h1>사인업 도미닉</h1>
+		<table class="signUp">
+			<tr>
+				<td>아이디 : </td>
+				<td><input type="text" name = "mb_id"></td>
+			</tr>
+			<tr>
+				<td>비  번 : </td>
+				<td><input type="text" name = "mb_pw"></td>
+			</tr>
+			<tr>
+				<td>이  름 : </td>
+				<td><input type="text" name = "mb_name"></td>
+			</tr>
+		</table>
+		<input type="submit" value="제출">
 	</div>
+	</form>
 </body>
 </html>
