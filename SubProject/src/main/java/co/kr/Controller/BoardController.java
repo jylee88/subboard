@@ -29,11 +29,11 @@ public class BoardController {
 	public String BoardList(Model model, String b_code, Criteria criteria){
 		
 		PageMaker pagemaker = new PageMaker();
-		int boardTotalCnt = boardservice.BoardTotalCount(b_code);
+		int boardTotalCnt = boardservice.BoardTotalCount(criteria);
 
+		
 		criteria.setB_code(b_code);
 		criteria.setStart(criteria.getPage());
-		
 		List<BoardDTO> board = boardservice.BoardList(criteria);
 		
 		
@@ -101,9 +101,8 @@ public class BoardController {
 	////////////////////////////////////////reply
 	//댓글 보기
 	@ResponseBody
-	@RequestMapping(value = "Board/replyView", method = RequestMethod.POST)
+	@RequestMapping(value = "Board/replyView", method = RequestMethod.GET)
 	public List<Reply> replyView(int b_number) {
-
 		return boardservice.ReplyView(b_number);
 	}
 	

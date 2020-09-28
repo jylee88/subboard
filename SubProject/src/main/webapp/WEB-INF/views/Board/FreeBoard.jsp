@@ -43,22 +43,76 @@
 	<div>
 		<ul>
 			<c:if test ="${pagemaker.prev}">
-				<li class = "li"><a href = "${contextPath}/Board/BoardList?page=${pagemaker.startPage - 1}&b_code=${b_code}" class="page">이전</a></li>
+				<li class = "li">
+					<a href = "${contextPath}/Board/BoardList?page=${pagemaker.startPage - 1}&b_code=${b_code}&searchType=${pagemaker.criteria.searchType}&keyword=${pagemaker.criteria.keyword}" class="page">이전</a>
+				</li>
 			</c:if>
 			
 			<c:if test = "${pagemaker.pageNum > 1}">
 				<c:forEach var = "index" begin = "${pagemaker.startPage}" end = "${pagemaker.endPage}">
-					<li class = "li"><a href = "${contextPath}/Board/BoardList?page=${index}&b_code=${b_code}" class="page">${index}</a></li>
+					<li class = "li">
+						<a href = "${contextPath}/Board/BoardList?page=${index}&b_code=${b_code}&searchType=${pagemaker.criteria.searchType}&keyword=${pagemaker.criteria.keyword}" class="page">${index}</a>
+					</li>
 				</c:forEach>
 			</c:if>	
 					
 			<c:if test = "${pagemaker.next}">
-				<li class = "li"><a href = "${contextPath}/Board/BoardList?page=${pagemaker.endPage + 1}&b_code=${b_code}" class="page">다음</a></li>
+				<li class = "li">
+				<a href = "${contextPath}/Board/BoardList?page=${pagemaker.endPage + 1}&b_code=${b_code}&searchType=${pagemaker.criteria.searchType}&keyword=${pagemaker.criteria.keyword}" class="page">
+				다음</a>
+				</li>
 			</c:if>
 		</ul>
 	</div>
 	<input type = "button" value = "글쓰기" onclick = "location.href = '${contextPath}/Board/boardRegister?b_code=${b_code}'">
 	<input type = "button" value = "메인" onclick = "location.href = '${contextPath}'">
+	<div align = "center">
+		<select id = "searchType">
+			<option selected = "selected">--선택--</option>
+			<option value = "searchTitle">제목</option>
+			<option value = "searchContent">내용</option>
+		</select>
+		<input type = "text" id = "search">
+		<input type = "button" value = "검색" id = "searchBtn" >
+	</div>
 </div>	
 </body>
+
+<script>
+	$(document).ready(function(){
+		
+	});
+	
+	$(document).on('click',"#searchBtn",function(){
+		
+		var searchType = $("#searchType").val();
+		var keyword = $("#search").val();
+		
+		var url = '${contextPath}/Board/BoardList?b_code=${b_code}'
+				+'&searchType='+searchType
+				+'&keyword='+keyword;
+				
+		self.location = url;		
+		
+	});
+
+	
+</script>
+
+
+
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

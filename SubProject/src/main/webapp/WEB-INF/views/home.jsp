@@ -17,7 +17,7 @@
 	
 	<div>
 		<input type = "button" value = "로그인">
-		<input type = "button" value = "회원가입">
+		<input type = "button" onclick = "location.href = '${contextPath}/Member/SignUp'" value = "회원가입">
 	</div>
 	<div>
 		<a href = "${contextPath }/Board/BoardList?b_code=Free">자유 게시판</a>

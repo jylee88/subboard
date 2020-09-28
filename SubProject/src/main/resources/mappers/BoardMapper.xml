@@ -10,13 +10,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		board
 		where b_del = 0
 		and b_code = #{b_code}
+		
+		<include refid = "search" />
+		
 		limit #{start}, #{end}
 	</select>
 	
+	<sql id = "search">
+		<if test="searchType == 'searchTitle'">
+			and b_title like CONCAT('%',#{keyword},'%')
+		</if>
+		<if test ="searchType == 'searchContent'">
+			and b_content like CONCAT('%',#{keyword},'%')
+		</if>
+	</sql>
+	
 	<!-- 게시판 토탈 카운트 -->
-	<select id = "BoardTotalCount" parameterType = "java.lang.String" resultType = "java.lang.Integer">
+	<select id = "BoardTotalCount" parameterType = "co.kr.Board.Criteria" resultType = "java.lang.Integer">
 		select count(*) from board
 		where b_code = #{b_code}	
+		<include refid = "search"/>
 	</select>
 	
 	<!-- 게시판 글 상세-->

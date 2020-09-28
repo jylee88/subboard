@@ -5,14 +5,28 @@ public class Criteria {
 	private int start;
 	private int end;
 	private String b_code;
+	private String searchType;
+	private String keyword;
 	
 	public Criteria() {
-		this.end = 1;
 		this.start = 0;
 		this.end = 10;
 	}
 	
 	
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
 	public int getPage() {
 		return page;
 	}
@@ -45,5 +59,9 @@ public class Criteria {
 		this.b_code = b_code;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Criteria [page=" + page + ", start=" + start + ", end=" + end + ", b_code=" + b_code + ", searchType="
+				+ searchType + ", keyword=" + keyword + "]";
+	}
 }

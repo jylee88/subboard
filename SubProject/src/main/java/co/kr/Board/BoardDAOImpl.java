@@ -51,8 +51,8 @@ public class BoardDAOImpl implements BoardDAO{
 
 	//게시판 토탈 카운팅
 	@Override
-	public int BoardTotalCount(String b_code) {
-		return sqlsession.selectOne("BoardTotalCount", b_code);
+	public int BoardTotalCount(Criteria criteria) {
+		return sqlsession.selectOne("BoardTotalCount", criteria);
 	}
 
 	@Override

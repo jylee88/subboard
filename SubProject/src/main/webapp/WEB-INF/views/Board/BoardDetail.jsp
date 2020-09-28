@@ -31,7 +31,7 @@
 	<hr>
 	<div align = "center">
 		<textarea placeholder = "댓글을 입력하세요" id="recontent" ></textarea>
-		<input type = "button" value = "저장" onclick = "reply()">
+		<input type = "button" value = "저장" onclick = "replyInsert()">
 		<br><br><br>
 	</div>
 	<div align = "center" id = "replyview">
@@ -48,24 +48,37 @@
 	
 	//댓글 보기
 	function replyView(){
-		var htmls = "";
-		var b_number = ${BoardDetail.b_number};
+		let htmls = "";
+		let b_number = ${BoardDetail.b_number};
+		
 		
 		$.ajax({
-			type : "POST",
+			type : "GET",
 			url : "${contextPath}/Board/replyView",
 			data : {b_number},
-			dataType : 'json',
 			success : function(reply){
-				htmls += '<div align = "center" id = "replyview">';
-				htmls += '<h2>댓글이 없습니다.</h2>'
-				htmls += '</div>';
 				
-				alert(htmls);
+				if(reply.length <= 0){
+					htmls += '<div align = "center" id = "replyview">';
+					htmls += '등록된 댓글이 없습니다';
+					htmls += '</div>';
+				}
+				else{
+					$(reply).each(function(){
+						htmls += '<div align = "center" id = "replyview">';
+						htmls += '내용'
+						htmls += '<textarea readonly = "readonly">'+ this.r_content +'</textarea>';
+						htmls += '<br>작성자';
+						htmls += '<input type = "text" readonly = "readonly" value = "'+ this.r_id +'">';
+						htmls += '<br><br><br></div>';
+					});					
+				}
+				
+				
 				$("#replyview").replaceWith(htmls);
 			},
 			error : function(){
-				
+				alert("error");
 			}
 		});
 	}
@@ -83,12 +96,12 @@
 			type : 'POST',
 			url : '${contextPath}/Board/replyInsert',
 			data : data,
-			dataType : 'json',
 			success : function(){
-				
+				alert("댓글 작성 성공");
+				replyView();
 			},
 			error : function(){
-				
+				alert("댓글 작성 에러");
 			}			
 		});
 	}

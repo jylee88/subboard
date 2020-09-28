@@ -6,7 +6,7 @@ public interface BoardDAO {
 	//게시판
 	public List<BoardDTO> BoardList(Criteria criteria);
 	//게시판 게시글 카운팅
-	public int BoardTotalCount(String b_code);
+	public int BoardTotalCount(Criteria criteria);
 	//글 상세
 	public BoardDTO BoardDetail(int b_number);
 	//조회수 증가

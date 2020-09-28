@@ -26,7 +26,22 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="co.kr" />
+
+	<!-- 인터셉터 객체 생성 -->
+    <beans:bean id="autoInterceptor" class="co.kr.Interceptor.MyInterceptor">
+    </beans:bean>
+    <!-- Interceptor 설정 -->
+    <interceptors>
+        <interceptor>
+            <mapping path="/**"/>
+            <beans:ref bean="autoInterceptor"/>
+        </interceptor>
+    </interceptors>
+	</beans:beans>
+
 	
 	
 	
-</beans:beans>
+	
+	
+	

@@ -50,8 +50,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int BoardTotalCount(String b_code) {
-		return boardDAO.BoardTotalCount(b_code);
+	public int BoardTotalCount(Criteria criteria) {
+		return boardDAO.BoardTotalCount(criteria);
 	}
 
 	@Override
